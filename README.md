@@ -26,7 +26,8 @@ $('#video').YTPlayer({
 });
 ```
 
-## [Youtube Javascript API Options](https://developers.google.com/youtube/js_api_reference
+## Works with Youtube Javascript API
+[Youtube Javascript API Options](https://developers.google.com/youtube/js_api_reference
 )
 ```
  Access all of YouTube API of player:
