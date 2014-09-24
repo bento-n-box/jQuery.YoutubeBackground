@@ -9,7 +9,6 @@ Put the script at the [bottom](https://developer.yahoo.com/performance/rules.htm
 
 ```html
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
- <script src="http://www.youtube.com/iframe_api"></script>
  <script src="src/jquery.youtubebackground.js"></script>
 ```
 
