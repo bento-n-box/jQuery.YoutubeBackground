@@ -26,6 +26,10 @@ source {
   display: block;
 }
 
+.loaded .placeholder-image {
+  display: none;
+}
+
 
 .ytplayer-container {
   bottom: 0;
