@@ -35,7 +35,7 @@ if (typeof Object.create !== "function") {
          */
         init: function init(node, userOptions) {
             this.userOptions = userOptions;
-            $body = $('body'),
+            $body = $('body');
             $node = $(node);
             var self = this;
             this.options = $.extend({}, this.defaults, this.userOptions);
@@ -46,17 +46,20 @@ if (typeof Object.create !== "function") {
                 this.createContainerVideo();
             }
 
-            // Throttled Resize Event
+            // Listen for Resize Event
             $(window).on('resize', function() {
                 self.resize(self);
             });
-            self.resize(self);
 
             // Listen for Gobal YT player callback
             window.onYouTubeIframeAPIReady = function() {
                 self.onYouTubeIframeAPIReady(self);
             };
 
+            // Loading YT script after we add iframe rady
+            $.getScript("https://www.youtube.com/iframe_api");
+
+            self.resize(self);
             return this;
         },
 
@@ -65,8 +68,14 @@ if (typeof Object.create !== "function") {
          * Adds HTML for video in a container
          */
         createContainerVideo: function createContainerVideo() {
-            var YTPlayerContainer = '<div id="YTPlayer-container" style="overflow: hidden; position: absolute; z-index: 0; top: 0; left: 0; right: 0; bottom: 0; min-width: 100%; height: 100%"><div id="YTPlayer-player" style="position: absolute"></div></div><div id="YTPlayer-shield" style="width: 100%; height: 100%; z-index: 2; position: absolute; left: 0; top: 0;"></div>';
-            $node.append(YTPlayerContainer);
+
+            /*jshint multistr: true */
+            var $YTPlayerString = $('<div id="ytplayer-container" class="ytplayer-container container"> \
+                                    <div id="ytplayer-player" class="ytplayer-player"></div> \
+                                    </div> \
+                                    <div id="ytplayer-shield"></div>');
+
+            $node.append($YTPlayerString);
         },
 
         /**
@@ -74,20 +83,13 @@ if (typeof Object.create !== "function") {
          * Adds HTML for video background
          */
         createBackgroundVideo: function createBackgroundVideo() {
-            // build container
-            var YTPlayerContainer = '<div id="YTPlayer-container" style="overflow: hidden; position: fixed; z-index: 0; top: 0; left: 0; right: 0; bottom: 0; min-width: 100%; height: 100%"><div id="YTPlayer-player" style="position: absolute"></div></div><div id="YTPlayer-shield" style="width: 100%; height: 100%; z-index: 2; position: absolute; left: 0; top: 0;"></div>';
+            /*jshint multistr: true */
+            var $YTPlayerString = $('<div id="ytplayer-container" class="ytplayer-container background">\
+                                    <div id="ytplayer-player" class="ytplayer-player"></div>\
+                                    </div>\
+                                    <div id="ytplayer-shield"></div>');
 
-            // set up css prereq's, inject YTPlayer container and set up wrapper defaults
-            $('html,body').css({
-                'width': '100%',
-                'height': '100%'
-            });
-            $body.prepend(YTPlayerContainer);
-            $node.css({
-                position: 'relative',
-                'z-index': this.options.wrapperZIndex
-            });
-
+            $node.append($YTPlayerString);
         },
 
         /**
@@ -106,9 +108,8 @@ if (typeof Object.create !== "function") {
                 pWidth, // player width, to be defined
                 height = container.height(),
                 pHeight, // player height, tbd
-                $YTPlayerPlayer = $('#YTPlayer-player');
+                $YTPlayerPlayer = $('#ytplayer-player');
 
-            self.options.width = width;
             // when screen aspect ratio differs from video, video must center and underlay one dimension
             if (width / self.options.ratio < height) {
                 pWidth = Math.ceil(height * self.options.ratio); // get new player width
@@ -131,7 +132,8 @@ if (typeof Object.create !== "function") {
          * Youtube API calls this function when the player is ready.
          */
         onYouTubeIframeAPIReady: function onYouTubeIframeAPIReady(self) {
-            player = new window.YT.Player('YTPlayer-player', {
+
+            player = new window.YT.Player('ytplayer-player', {
                 width: self.options.width,
                 height: Math.ceil(self.options.width / self.options.ratio),
                 videoId: self.options.videoId,
@@ -149,6 +151,9 @@ if (typeof Object.create !== "function") {
                         self.onPlayerReady(e);
                     },
                     'onStateChange': function(e) {
+                        if(e.data === 1) {
+                            $node.addClass('loaded')
+                        }
                         self.onPlayerStateChange(e);
                     }
                 }
