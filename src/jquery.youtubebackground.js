@@ -151,10 +151,8 @@ if (typeof Object.create !== "function") {
                         self.onPlayerReady(e);
                     },
                     'onStateChange': function(e) {
-                        console.log("state change", e);
-                        $node.addClass('loaded')
                         if(e.data === 1) {
-
+                            $node.addClass('loaded')
                         }
                         self.onPlayerStateChange(e);
                     }
