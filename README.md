@@ -39,7 +39,8 @@ $('#video').YTPlayer({
 
 ```
 
-```Options
+## Options
+```
   ratio: 16 / 9, // change as needed
   videoId: 'LSmgKRx5pBo'
   mute: true,
@@ -47,6 +48,11 @@ $('#video').YTPlayer({
   fitToBackground: true
 ```
 
+## Install with Bower
+
+```
+bower install youtube-background-video
+```
 ## Documentation
 
 None yet

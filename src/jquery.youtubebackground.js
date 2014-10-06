@@ -7,14 +7,17 @@ if (typeof Object.create !== "function") {
 }
 
 (function($, window) {
+    // Variable for youtube player
     var player;
-    // YTPlayer
+
+
+    // YTPlayer Object
     YTPlayer = {
 
         // Defaults
         defaults: {
-            ratio: 16 / 9, // usually either 4/3 or 16/9 -- tweak as needed
-            videoId: 'ZCAnLxRvNNc', // toy robot in space is a good default, no?
+            ratio: 16 / 9,
+            videoId: 'LSmgKRx5pBo',
             mute: true,
             repeat: true,
             width: $(window).width(),
@@ -47,7 +50,7 @@ if (typeof Object.create !== "function") {
             }
 
             // Listen for Resize Event
-            $(window).on('resize', function() {
+            $(window).on('resize.YTplayer', function() {
                 self.resize(self);
             });
 
@@ -188,6 +191,15 @@ if (typeof Object.create !== "function") {
          */
         getPlayer: function getPlayer() {
             return player;
+        },
+
+        /**
+         * @function destroy
+         * destroys all!
+         */
+        destroy: function destroy() {
+            $(window).on('resize.YTplayer');
+            player.destroy();
         }
     };
 
