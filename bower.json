@@ -1,0 +1,30 @@
+{
+  "name": "youtubeBackground",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rochestb/jQuery.YoutubeBackground",
+  "authors": [
+    "Benton Rochester <bentonrochester@gmail.com>"
+  ],
+  "description": "A wrapper for the Youtube API - Great for fullscreen background videos or just regular videos.",
+  "main": "src/jQuery.YoutubeBackground",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "jquery",
+    "background",
+    "video"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "source/js/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}
