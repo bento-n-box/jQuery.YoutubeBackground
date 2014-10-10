@@ -1,3 +1,5 @@
+
+// Chain of Responsibility pattern. Creates base class that can be overridden. 
 if (typeof Object.create !== "function") {
     Object.create = function(obj) {
         function F() {}
