@@ -198,8 +198,10 @@ if (typeof Object.create !== "function") {
          * destroys all!
          */
         destroy: function destroy() {
-            $(window).on('resize.YTplayer');
-            player.destroy();
+            $(window).off('resize.YTplayer');
+            $body = null;
+            $node = $(node);
+            player = null;
         }
     };
 
