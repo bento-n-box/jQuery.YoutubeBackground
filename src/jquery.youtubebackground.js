@@ -1,3 +1,13 @@
+/*
+ * YoutubeBackground - A wrapper for the Youtube API - Great for fullscreen background videos or just regular videos.
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ *
+ * Version:  1.0.1
+ *
+ */
 
 // Chain of Responsibility pattern. Creates base class that can be overridden. 
 if (typeof Object.create !== "function") {
