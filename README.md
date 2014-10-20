@@ -33,7 +33,7 @@ $('#video').YTPlayer({
 ```
  Access all of YouTube API of player:
 
- var player = $('#video').data('ytPlayer').getPlayer();
+ var player = $('#video').data('ytPlayer');
  player.pauseVideo();
  player.mute()
 
