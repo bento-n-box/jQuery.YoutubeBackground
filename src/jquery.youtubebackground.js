@@ -63,7 +63,19 @@ if (typeof Object.create !== "function") {
             volumeDownClass: 'YTPlayer-volume-down',
             increaseVolumeBy: 10,
             start: 0,
-            fitToBackground: true
+            fitToBackground: true,
+            playerVars: {
+                modestbranding: 1,
+                autoplay: 1,
+                controls: 0,
+                showinfo: 0,
+                wmode: 'transparent',
+                branding: 0,
+                rel: 0,
+                autohide: 0,
+                origin: window.location.origin
+            },
+            events: null
         },
 
         /**
@@ -78,7 +90,21 @@ if (typeof Object.create !== "function") {
             self.$body = $('body');
             self.$node = $(node);
 
-            self.options = $.extend({}, self.defaults, self.userOptions);
+            // Setup event defaults with the reference to this
+            self.defaults.events = {
+                onReady: function(e) {
+                    self.onPlayerReady(e);
+                },
+                onStateChange: function(e) {
+                    if (e.data === 1) {
+                        self.$node.addClass('loaded');
+                    } else if (e.data === 0 && self.options.repeat) { // video ended and repeat option is set true
+                        self.player.seekTo(self.options.start);
+                    }
+                }
+            }
+
+            self.options = $.extend(true, {}, self.defaults, self.userOptions);
 
             self.ID = (new Date()).getTime();
             self.holderID = 'YTPlayer-ID-' + self.ID;
@@ -180,31 +206,13 @@ if (typeof Object.create !== "function") {
          */
         onYouTubeIframeAPIReady: function onYouTubeIframeAPIReady() {
             var self = this;
+
             self.player = new window.YT.Player(self.holderID, {
                 width: self.options.width,
                 height: Math.ceil(self.options.width / self.options.ratio),
                 videoId: self.options.videoId,
-                playerVars: {
-                    controls: 0,
-                    showinfo: 0,
-                    wmode: 'transparent',
-                    modestbranding: 1,
-                    branding: 0,
-                    rel: 0,
-                    autohide: 0,
-                    origin: location.origin,
-                },
-                events: {
-                    'onReady': function(e) {
-                        self.onPlayerReady(e);
-                    },
-                    'onStateChange': function(e) {
-                        if(e.data === 1) {
-                            self.$node.addClass('loaded')
-                        }
-                        self.onPlayerStateChange(e);
-                    }
-                }
+                playerVars: self.options.playerVars,
+                events: self.options.events
             });
         },
 
@@ -220,18 +228,6 @@ if (typeof Object.create !== "function") {
         },
 
         /**
-         * @function onPlayerStateChange
-         * @ params {event} window event from youtube player
-         * Youtube API calls this function when the player's state changes.
-         */
-        onPlayerStateChange: function onPlayerStateChange(state) {
-            var self = this;
-            if (state.data === 0 && self.options.repeat) { // video ended and repeat option is set true
-                self.player.seekTo(self.options.start);
-            }
-        },
-
-        /**
          * @function getPlayer
          * returns youtube player
          */
@@ -244,7 +240,6 @@ if (typeof Object.create !== "function") {
          * destroys all!
          */
         destroy: function destroy() {
-            console.log(this);
             var self = this;
 
             self.$node
