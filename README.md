@@ -1,8 +1,7 @@
 # jQuery.BackgroundVideo V 1.0
 Inspired by [Tubular] (http://www.seanmccambridge.com/tubular/)
 
-
-EXAMPLE: http://rochestb.github.io/jQuery.YoutubeBackground/
+EXAMPLE: http://rochestb.github.io/jQuery.YoutubeBackground
 
 [jQuery](http://jquery.com/) plugin that lets you create background videos using youtube api
 
@@ -33,19 +32,20 @@ $('#video').YTPlayer({
 ```
  Access all of YouTube API of player:
 
- var player = $('#video').data('ytPlayer');
- player.pauseVideo();
- player.mute()
+var player = $('#background-video').data('ytPlayer').player;
+player.pauseVideo();
+player.playVideo();
+
+player.addEventListener('onStateChange', function(data){
+  console.log("Player State Change", data);
+});
 
 ```
 
 ## Options
 ```
-  ratio: 16 / 9, // change as needed
-  videoId: 'LSmgKRx5pBo'
-  mute: true,
-  repeat: true,
-  fitToBackground: true
+For more details visit our [Detail Page] (http://rochestb.github.io/jQuery.YoutubeBackground)
+
 ```
 
 ## Install with Bower
