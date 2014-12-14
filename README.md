@@ -29,8 +29,9 @@ $('#video').YTPlayer({
 ## Works with Youtube Javascript API
 
 [Youtube Javascript API Options](https://developers.google.com/youtube/js_api_reference)
+
+Access all of YouTube's API by using player:
 ```
- Access all of YouTube API of player:
 
 var player = $('#background-video').data('ytPlayer').player;
 player.pauseVideo();
@@ -43,10 +44,8 @@ player.addEventListener('onStateChange', function(data){
 ```
 
 ## Options
-```
 For more details visit our [Detail Page] (http://rochestb.github.io/jQuery.YoutubeBackground)
 
-```
 
 ## Install with Bower
 
