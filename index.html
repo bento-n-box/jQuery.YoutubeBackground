@@ -3,45 +3,170 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Twitter Boostrap for Demo -->
+  <link rel="stylesheet" href="http:////maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <!-- styles for video player -->
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
 
-        <!-- Twitter Boostrap for Demo -->
-        <link rel="stylesheet" href="http:////maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <div id="background-video" class="background-video">
+    <img src="images/placeholder.jpg" alt="" class="placeholder-image">
+  </div>
 
-        <!-- styles for video player -->
-        <link rel="stylesheet" href="src/style.css">
+  <div class="padding container">
+    <h1>Jquery Youtube Background Video</h1>
+    <p class="lead">A simple wrapper for the YouTube API to create background videos</p>
+    <div id="anotherVideo"></div>
+  </div>
 
-    </head>
-    <body>
-        <div id="background-video" class="background-video">
-            <img src="images/placeholder.jpg" alt="" class="placeholder-image">
-        </div>
+  <div class="container options">
+    <div class="row">
+      <div class="span12">
+        <h1>Customizing</h1>
+        <h2>1. Options</h2>
+        <p>All of the options below are available to customize your Youtube Background Player </p>
+        <table class="table hp-table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Default</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="text-emp">ratio</span></td>
+              <td>ratio: 16 / 9</td>
+              <td>int</td>
+              <td>Sets video ratio dimensions</td>
+            </tr>
+            <tr>
+              <td><span class="text-emp">videoId</span></td>
+              <td>LSmgKRx5pBo</td>
+              <td>String</td>
+              <td>Video Id: Specifies which Youtube Video</td>
+            </tr>
+            <tr>
+              <td><span class="text-emp">mute</span></td>
+              <td>true</td>
+              <td>boolean</td>
+              <td>Mutes Youtube Video</td>
+            </tr>
+            <tr>
+              <td><span class="text-emp">width</span></td>
+              <td>$(window).width()</td>
+              <td>int</td>
+              <td>Expands Video to width of container</td>
+            </tr>
+            <tr>
+              <td><span class="text-emp">pauseOnScroll</span></td>
+              <td>false</td>
+              <td>boolean</td>
+              <td>Pauses Video During Scroll to help performance</td>
+            </tr>
+            <tr>
+              <td><span class="text-emp">repeat</span></td>
+              <td>true</td>
+              <td>boolean</td>
+              <td>Loops Video</td>
+            </tr>
+            <tr>
+              <td><span class="text-emp">fitToBackground</span></td>
+              <td>true</td>
+              <td>boolean</td>
+              <td>Fits to background vs fitting to the container specified with width</td>
+            </tr>
+            <tr>
+              <td><span class="text-emp">fitToBackground</span></td>
+              <td>true</td>
+              <td>boolean</td>
+              <td>Fits to background vs fitting to the container specified with width</td>
+            </tr>
+            <tr>
+              <td><span class="text-emp">start</span></td>
+              <td>0</td>
+              <td>int</td>
+              <td>Second in which video should begin playing at</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-        <div class="padding container">
-            <div class="jumbotron">
-                <h1>Jquery Youtube Background Video</h1>
-                <p class="lead">A simple wrapper for the YouTube API to create background videos</p>
-                <div id="anotherVideo"></div>
-            </div>
-        </div>
+  <div class="container options">
+    <div class="row">
+      <div class="span12">
+        <h2>2. Callbacks</h2>
+        <h3>Example:</h3>
+        <pre>
+$('#background-video').YTPlayer({
+  videoId: 'LSmgKRx5pBo',
+  callback: function() {
+    console.log("playerFinshed");
+  }
+});
+        </pre>
+         <table class="table hp-table table-bordered ">
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Default</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="text-emp">callback</span></td>
+              <td>false</td>
+              <td>function</td>
+              <td>Once Video Begins Playing</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <h2>3. Youtube Api</h2>
+        <p>The beauty of this player, is you can rely on the Youtube API</p>
+        <p>To grab the youtube player:</p>
+        <h3>Example:</h3>
+        <pre>
+var player = $('#background-video').data('ytPlayer').player;
+player.pauseVideo();
+player.playVideo();
 
-        <!-- ADD Jquery Video Background -->
-        <script src="src/jquery.youtubebackground.js"></script>
+player.addEventListener('onStateChange', function(data){
+  console.log("Player State Change", data);
+});
+        </pre>
+        <p>For full documentation view Youtube's Api: <a href="https://developers.google.com/youtube/js_api_reference">https://developers.google.com/youtube/js_api_reference</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <!-- ADD Jquery Video Background -->
+  <script src="src/jquery.youtubebackground.js"></script>
+  <script>
+    jQuery(function($) {
+      $('#background-video').YTPlayer({
+        fitToBackground: true,
+        videoId: 'LSmgKRx5pBo',
+        pauseOnScroll: true,
+        callback: function() {
+          var player = $('#background-video').data('ytPlayer').player;
+          console.log("callback", player);
+        }
+      });
 
-        <script>
-
-            $('#background-video').YTPlayer({
-                fitToBackground: true,
-                videoId: 'LSmgKRx5pBo'
-            });
-
-        </script>
-    </body>
+    });
+  </script>
+</body>
 </html>
