@@ -30,7 +30,6 @@ source {
   opacity: 0;
 }
 
-
 .ytplayer-container {
   bottom: 0;
   height: 100%;
@@ -69,4 +68,11 @@ source {
 
 .ytplayer-player {
   position: absolute;
+}
+
+.container {
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .9);
+  padding: 0 30px 0 30px;
+  margin: 30px auto;
 }
