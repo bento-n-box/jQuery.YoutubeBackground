@@ -21,13 +21,16 @@ if (typeof Object.create !== "function") {
 (function($, window, document) {
   var
     loadAPI = function loadAPI(callback) {
-      var tag = document.createElement('script'),
-        head = document.getElementsByTagName('head')[0];
 
-      // tag.src = location.protocol + '//www.youtube.com/iframe_api';
-      tag.src = 'http://www.youtube.com/iframe_api';
+      // Load Youtube API
+      var tag = document.createElement('script'),
+      head = document.getElementsByTagName('head')[0];
+
+      tag.src = location.protocol + '//www.youtube.com/iframe_api';
 
       head.appendChild(tag);
+
+      // Clean up Tags.
       head = null;
       tag = null;
 
@@ -35,13 +38,22 @@ if (typeof Object.create !== "function") {
     },
     iframeIsReady = function iframeIsReady(callback) {
       // Listen for Gobal YT player callback
-      if (typeof YT === 'undefined') {
+
+      if (typeof YT === 'undefined' && typeof window.loadingPlayer === 'undefined') {
+        // Prevents Ready Event from being called twice
+        window.loadingPlayer = true;
+
+        // Creates deferred so, other players know when to wait.
+        window.dfd = $.Deferred();
         window.onYouTubeIframeAPIReady = function() {
           window.onYouTubeIframeAPIReady = null;
+          window.dfd.resolve( "John" );
           callback();
         };
       } else {
-        callback();
+        window.dfd.done(function( name ) {
+          callback();
+        });
       }
     };
 
@@ -95,13 +107,7 @@ if (typeof Object.create !== "function") {
       self.defaults.events = {
         onReady: function(e) {
           self.onPlayerReady(e);
-        },
-        onStateChange: function(e) {
-          if (e.data === 1) {
-            self.$node.addClass('loaded');
-          } else if (e.data === 0 && self.options.repeat) { // video ended and repeat option is set true
-            self.player.seekTo(self.options.start);
-          }
+
           // setup up pause on scroll
           if (self.options.pauseOnScroll) {
             self.pauseOnScroll();
@@ -110,6 +116,13 @@ if (typeof Object.create !== "function") {
           // Callback for when finished
           if (typeof self.options.callback == 'function') {
             self.options.callback.call(this);
+          }
+        },
+        onStateChange: function(e) {
+          if (e.data === 1) {
+            self.$node.addClass('loaded');
+          } else if (e.data === 0 && self.options.repeat) { // video ended and repeat option is set true
+            self.player.seekTo(self.options.start);
           }
         }
       }
@@ -289,8 +302,20 @@ if (typeof Object.create !== "function") {
     }
   };
 
-  // create plugin
+  // Scroll Stopped event.
+  $.fn.scrollStopped = function(callback) {
+    var $this = $(this), self = this;
+    $this.scroll(function(){
+      if ($this.data('scrollTimeout')) {
+        clearTimeout($this.data('scrollTimeout'));
+      }
+      $this.data('scrollTimeout', setTimeout(callback,250,self));
+    });
+  };
+
+  // Create plugin
   $.fn.YTPlayer = function(options) {
+
     return this.each(function() {
       var el = this;
 
@@ -298,17 +323,6 @@ if (typeof Object.create !== "function") {
       var player = Object.create(YTPlayer);
       player.init(el, options);
       $.data(el, "ytPlayer", player);
-
-    });
-  };
-
-  $.fn.scrollStopped = function(callback) {
-    var $this = $(this), self = this;
-    $this.scroll(function(){
-        if ($this.data('scrollTimeout')) {
-          clearTimeout($this.data('scrollTimeout'));
-        }
-        $this.data('scrollTimeout', setTimeout(callback,250,self));
     });
   };
 

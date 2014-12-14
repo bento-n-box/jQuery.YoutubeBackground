@@ -129,7 +129,7 @@ $('#background-video').YTPlayer({
               <td><span class="text-emp">callback</span></td>
               <td>false</td>
               <td>function</td>
-              <td>Once Video Begins Playing</td>
+              <td>Once Youtube Player is Ready.</td>
             </tr>
           </tbody>
         </table>
@@ -147,15 +147,62 @@ player.addEventListener('onStateChange', function(data){
   console.log("Player State Change", data);
 });
         </pre>
+
+        <h3>Leverage Youtubes API's Options</h3>
+        <pre>
+$('#module-video').YTPlayer({
+  fitToBackground: false,
+  videoId: 'jKCyFB5LmPo',
+  pauseOnScroll: false,
+  playerVars: {
+    modestbranding: 0,
+    autoplay: 1,
+    controls: 1,
+    showinfo: 0,
+    wmode: 'transparent',
+    branding: 0,
+    rel: 0,
+    autohide: 0,
+    origin: window.location.origin
+  }
+});
+        </pre>
         <p>For full documentation view Youtube's Api: <a href="https://developers.google.com/youtube/js_api_reference">https://developers.google.com/youtube/js_api_reference</a></p>
       </div>
     </div>
   </div>
+
+  <div class="container options">
+    <h2>Use plugin for regular videos as well!</h2>
+  </div>
+
+  <div class="container options">
+    <div id="module-video" class="module-video"></div>
+  </div>
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <!-- ADD Jquery Video Background -->
   <script src="src/jquery.youtubebackground.js"></script>
   <script>
     jQuery(function($) {
+
+      $('#module-video').YTPlayer({
+        fitToBackground: false,
+        videoId: 'jKCyFB5LmPo',
+        pauseOnScroll: false,
+        playerVars: {
+          modestbranding: 0,
+          autoplay: 1,
+          controls: 1,
+          showinfo: 0,
+          wmode: 'transparent',
+          branding: 0,
+          rel: 0,
+          autohide: 0,
+          origin: window.location.origin
+        }
+      });
+
       $('#background-video').YTPlayer({
         fitToBackground: true,
         videoId: 'LSmgKRx5pBo',
