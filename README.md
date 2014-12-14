@@ -1,7 +1,7 @@
 # jQuery.BackgroundVideo V 1.0
 Inspired by [Tubular] (http://www.seanmccambridge.com/tubular/)
 
-EXAMPLE: http://rochestb.github.io/jQuery.YoutubeBackground
+Example: http://rochestb.github.io/jQuery.YoutubeBackground
 
 [jQuery](http://jquery.com/) plugin that lets you create background videos using youtube api
 
@@ -44,7 +44,7 @@ player.addEventListener('onStateChange', function(data){
 ```
 
 ## Options
-For more details visit our [Detail Page] (http://rochestb.github.io/jQuery.YoutubeBackground)
+For more details visit our [Documentations Page] (http://rochestb.github.io/jQuery.YoutubeBackground)
 
 
 ## Install with Bower
@@ -54,7 +54,7 @@ bower install youtube-background-video
 ```
 ## Documentation
 
-None yet
+[Documentations Page] (http://rochestb.github.io/jQuery.YoutubeBackground)
 
 ## Contributing
 
