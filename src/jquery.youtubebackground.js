@@ -127,8 +127,10 @@ if (typeof Object.create !== "function") {
         }
       }
 
+
       self.options = $.extend(true, {}, self.defaults, self.userOptions);
 
+      self.options.height = Math.ceil(self.options.width / self.options.ratio);
       self.ID = (new Date()).getTime();
       self.holderID = 'YTPlayer-ID-' + self.ID;
 
@@ -250,13 +252,7 @@ if (typeof Object.create !== "function") {
     onYouTubeIframeAPIReady: function onYouTubeIframeAPIReady() {
       var self = this;
 
-      self.player = new window.YT.Player(self.holderID, {
-        width: self.options.width,
-        height: Math.ceil(self.options.width / self.options.ratio),
-        videoId: self.options.videoId,
-        playerVars: self.options.playerVars,
-        events: self.options.events
-      });
+      self.player = new window.YT.Player(self.holderID, self.options);
     },
 
     /**
