@@ -47,9 +47,11 @@ if (typeof Object.create !== "function") {
         window.dfd = $.Deferred();
         window.onYouTubeIframeAPIReady = function() {
           window.onYouTubeIframeAPIReady = null;
-          window.dfd.resolve( "John" );
+          window.dfd.resolve( "done" );
           callback();
         };
+      } else if (typeof YT === 'object')  {
+        callback();
       } else {
         window.dfd.done(function( name ) {
           callback();
