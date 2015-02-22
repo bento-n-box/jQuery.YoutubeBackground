@@ -3,6 +3,8 @@ Inspired by [Tubular] (http://www.seanmccambridge.com/tubular/)
 
 Example: http://rochestb.github.io/jQuery.YoutubeBackground
 
+Production Example: [www.cpbgroup.com] (http://cpbgroup.com)
+
 [jQuery](http://jquery.com/) plugin that lets you create background videos using youtube api
 
 
