@@ -26,7 +26,7 @@ if (typeof Object.create !== "function") {
       var tag = document.createElement('script'),
       head = document.getElementsByTagName('head')[0];
 
-      tag.src = location.protocol + '//www.youtube.com/iframe_api';
+      tag.src = 'http://www.youtube.com/iframe_api';
 
       head.appendChild(tag);
 
@@ -38,11 +38,11 @@ if (typeof Object.create !== "function") {
     },
     iframeIsReady = function iframeIsReady(callback) {
       // Listen for Gobal YT player callback
-
       if (typeof YT === 'undefined' && typeof window.loadingPlayer === 'undefined') {
         // Prevents Ready Event from being called twice
         window.loadingPlayer = true;
 
+        
         // Creates deferred so, other players know when to wait.
         window.dfd = $.Deferred();
         window.onYouTubeIframeAPIReady = function() {
@@ -86,8 +86,7 @@ if (typeof Object.create !== "function") {
         wmode: 'transparent',
         branding: 0,
         rel: 0,
-        autohide: 0,
-        origin: window.location.origin
+        autohide: 0
       },
       events: null
     },
@@ -107,7 +106,7 @@ if (typeof Object.create !== "function") {
 
       // Setup event defaults with the reference to this
       self.defaults.events = {
-        onReady: function(e) {
+        'onReady': function(e) {
           self.onPlayerReady(e);
 
           // setup up pause on scroll
@@ -120,7 +119,7 @@ if (typeof Object.create !== "function") {
             self.options.callback.call(this);
           }
         },
-        onStateChange: function(e) {
+        'onStateChange': function(e) {
           if (e.data === 1) {
             self.$node.addClass('loaded');
           } else if (e.data === 0 && self.options.repeat) { // video ended and repeat option is set true
@@ -131,7 +130,6 @@ if (typeof Object.create !== "function") {
 
 
       self.options = $.extend(true, {}, self.defaults, self.userOptions);
-
       self.options.height = Math.ceil(self.options.width / self.options.ratio);
       self.ID = (new Date()).getTime();
       self.holderID = 'YTPlayer-ID-' + self.ID;
@@ -173,7 +171,6 @@ if (typeof Object.create !== "function") {
         }
       });
     },
-
     /**
      * @function createContainerVideo
      * Adds HTML for video in a container
@@ -204,6 +201,7 @@ if (typeof Object.create !== "function") {
                                     </div>\
                                     <div id="ytplayer-shield"></div>');
 
+      self.$node.find('img').fadeOut();
       self.$node.append($YTPlayerString);
       self.$YTPlayerString = $YTPlayerString;
       $YTPlayerString = null;
@@ -253,8 +251,7 @@ if (typeof Object.create !== "function") {
      */
     onYouTubeIframeAPIReady: function onYouTubeIframeAPIReady() {
       var self = this;
-
-      self.player = new window.YT.Player(self.holderID, self.options);
+      self.player = new window.YT.Player(self.holderID, self.options);  
     },
 
     /**
