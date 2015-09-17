@@ -182,7 +182,7 @@ if (typeof Object.create !== "function") {
       var $YTPlayerString = $('<div id="ytplayer-container' + self.ID + '" >\
                                     <div id="' + self.holderID + '" class="ytplayer-player"></div> \
                                     </div> \
-                                    <div id="ytplayer-shield"></div>');
+                                    <div id="ytplayer-shield" class="ytplayer-shield"></div>');
 
       self.$node.append($YTPlayerString);
       self.$YTPlayerString = $YTPlayerString;
@@ -199,7 +199,7 @@ if (typeof Object.create !== "function") {
         $YTPlayerString = $('<div id="ytplayer-container' + self.ID + '" class="ytplayer-container background">\
                                     <div id="' + self.holderID + '" class="ytplayer-player"></div>\
                                     </div>\
-                                    <div id="ytplayer-shield"></div>');
+                                    <div id="ytplayer-shield" class="ytplayer-shield"></div>');
 
       self.$node.find('img').fadeOut();
       self.$node.append($YTPlayerString);
