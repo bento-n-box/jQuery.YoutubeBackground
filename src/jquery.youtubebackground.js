@@ -25,9 +25,13 @@ if (typeof Object.create !== "function") {
       // Load Youtube API
       var tag = document.createElement('script'),
       head = document.getElementsByTagName('head')[0];
-
-      tag.src = 'http://www.youtube.com/iframe_api';
-
+      
+      if(window.location.origin == 'file://') {
+        tag.src = 'http://www.youtube.com/iframe_api';
+      } else {
+        tag.src = '//www.youtube.com/iframe_api';
+      }
+      
       head.appendChild(tag);
 
       // Clean up Tags.
