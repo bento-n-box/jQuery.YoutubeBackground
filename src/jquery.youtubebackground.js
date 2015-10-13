@@ -83,6 +83,7 @@ if (typeof Object.create !== "function") {
       pauseOnScroll: false,
       fitToBackground: true,
       playerVars: {
+        iv_load_policy: 3,
         modestbranding: 1,
         autoplay: 1,
         controls: 0,
