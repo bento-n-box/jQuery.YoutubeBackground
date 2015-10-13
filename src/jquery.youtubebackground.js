@@ -88,9 +88,8 @@ if (typeof Object.create !== "function") {
         autoplay: 1,
         controls: 0,
         showinfo: 0,
-        wmode: 'transparent',
+        wmode: 'opaque',
         branding: 0,
-        rel: 0,
         autohide: 0
       },
       events: null
@@ -126,6 +125,8 @@ if (typeof Object.create !== "function") {
         },
         'onStateChange': function(e) {
           if (e.data === 1) {
+
+            self.$node.find('img').fadeOut(400);
             self.$node.addClass('loaded');
           } else if (e.data === 0 && self.options.repeat) { // video ended and repeat option is set true
             self.player.seekTo(self.options.start);
@@ -206,7 +207,6 @@ if (typeof Object.create !== "function") {
                                     </div>\
                                     <div id="ytplayer-shield" class="ytplayer-shield"></div>');
 
-      self.$node.find('img').fadeOut();
       self.$node.append($YTPlayerString);
       self.$YTPlayerString = $YTPlayerString;
       $YTPlayerString = null;

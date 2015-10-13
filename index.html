@@ -189,24 +189,36 @@ $('#module-video').YTPlayer({
           autoplay: 1,
           controls: 1,
           showinfo: 0,
-          wmode: 'transparent',
           branding: 0,
           rel: 0,
-          autohide: 0,
-          origin: window.location.origin
+          autohide: 0
         }
       });
-
+      
       $('#background-video').YTPlayer({
         fitToBackground: true,
         videoId: 'Fk9EBOOAYiU',
         pauseOnScroll: true,
         callback: function() {
-          var player = $('#background-video').data('ytPlayer').player;
-          console.log("callback", player);
+          videoCallbackEvents();
         }
       });
+      
+      var videoCallbackEvents = function() {
+        var player = $('#background-video').data('ytPlayer').player;
+      
+        player.addEventListener('onStateChange', function(event){
+            console.log("Player State Change", event);
 
+            // OnStateChange Data
+            if (event.data === 0) {          
+                console.log('video ended');
+            }
+            else if (event.data === 2) {          
+              console.log('paused');
+            }
+        });
+      }
     });
   </script>
 </body>
