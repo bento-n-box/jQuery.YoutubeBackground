@@ -28,6 +28,20 @@ $('#video').YTPlayer({
 });
 ```
 
+## Need to customize some CSS in order to make it a background
+```css
+#video{
+ position: relative;
+ background: transparent;
+}
+
+.ytplayer-container{
+ position: absolute;
+ top: 0;
+ z-index: -1;
+}
+```
+
 ## Works with Youtube Javascript API
 
 [Youtube Javascript API Options](https://developers.google.com/youtube/js_api_reference)
