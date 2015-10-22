@@ -25,9 +25,13 @@ if (typeof Object.create !== "function") {
       // Load Youtube API
       var tag = document.createElement('script'),
       head = document.getElementsByTagName('head')[0];
-
-      tag.src = 'http://www.youtube.com/iframe_api';
-
+      
+      if(window.location.origin == 'file://') {
+        tag.src = 'http://www.youtube.com/iframe_api';
+      } else {
+        tag.src = '//www.youtube.com/iframe_api';
+      }
+      
       head.appendChild(tag);
 
       // Clean up Tags.
@@ -79,13 +83,13 @@ if (typeof Object.create !== "function") {
       pauseOnScroll: false,
       fitToBackground: true,
       playerVars: {
+        iv_load_policy: 3,
         modestbranding: 1,
         autoplay: 1,
         controls: 0,
         showinfo: 0,
-        wmode: 'transparent',
+        wmode: 'opaque',
         branding: 0,
-        rel: 0,
         autohide: 0
       },
       events: null
@@ -121,6 +125,8 @@ if (typeof Object.create !== "function") {
         },
         'onStateChange': function(e) {
           if (e.data === 1) {
+
+            self.$node.find('img').fadeOut(400);
             self.$node.addClass('loaded');
           } else if (e.data === 0 && self.options.repeat) { // video ended and repeat option is set true
             self.player.seekTo(self.options.start);
@@ -182,7 +188,7 @@ if (typeof Object.create !== "function") {
       var $YTPlayerString = $('<div id="ytplayer-container' + self.ID + '" >\
                                     <div id="' + self.holderID + '" class="ytplayer-player"></div> \
                                     </div> \
-                                    <div id="ytplayer-shield"></div>');
+                                    <div id="ytplayer-shield" class="ytplayer-shield"></div>');
 
       self.$node.append($YTPlayerString);
       self.$YTPlayerString = $YTPlayerString;
@@ -199,9 +205,8 @@ if (typeof Object.create !== "function") {
         $YTPlayerString = $('<div id="ytplayer-container' + self.ID + '" class="ytplayer-container background">\
                                     <div id="' + self.holderID + '" class="ytplayer-player"></div>\
                                     </div>\
-                                    <div id="ytplayer-shield"></div>');
+                                    <div id="ytplayer-shield" class="ytplayer-shield"></div>');
 
-      self.$node.find('img').fadeOut();
       self.$node.append($YTPlayerString);
       self.$YTPlayerString = $YTPlayerString;
       $YTPlayerString = null;

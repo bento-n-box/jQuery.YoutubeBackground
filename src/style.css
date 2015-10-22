@@ -50,11 +50,6 @@ source {
   position: fixed;
   top: 0;
   z-index: 1;
-
-  opacity: 1;
-  transition: opacity .25s ease-in-out;
-  -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out;
 }
 
 .ytplayer-shield {
