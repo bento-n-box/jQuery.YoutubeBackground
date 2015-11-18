@@ -7,7 +7,7 @@
     "Benjamin Sterling <benjamin.sterling@kenzomedia.com"
   ],
   "description": "A wrapper for the Youtube API - Great for fullscreen background videos or just regular videos.",
-  "main": "src/jQuery.YoutubeBackground",
+  "main": "src/jquery.youtubebackground.js",
   "moduleType": [
     "globals"
   ],
