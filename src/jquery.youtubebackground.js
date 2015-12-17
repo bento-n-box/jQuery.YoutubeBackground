@@ -241,7 +241,7 @@ if (typeof Object.create !== "function") {
         pHeight = Math.ceil(width / self.options.ratio); // get new player height
         $YTPlayerPlayer.width(width).height(pHeight).css({
           left: 0,
-          top: 0
+          top: (height - pHeight) / 2
         }); // player height is greater, offset top; reset left
       }
 
