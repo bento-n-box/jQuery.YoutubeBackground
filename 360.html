@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Twitter Boostrap for Demo -->
+  <link rel="stylesheet" href="http:////maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <!-- styles for video player -->
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+  <div id="background-video" class="background-video">
+    <img src="images/placeholder.jpg" alt="" class="placeholder-image">
+  </div>
+
+  <div class="padding container">
+    <h1>Jquery Youtube Background Video</h1>
+    <p class="lead">It works for 360 Videos as well! Just make sure your z-index is in check.</p>
+    <div id="anotherVideo"></div>
+  </div>
+ 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <!-- ADD Jquery Video Background -->
+  <script src="src/jquery.youtubebackground.js"></script>
+  <script>
+    jQuery(function($) {
+
+      $('#module-video').YTPlayer({
+        fitToBackground: false,
+        videoId: 'jKCyFB5LmPo',
+        pauseOnScroll: false,
+        playerVars: {
+          modestbranding: 0,
+          autoplay: 1,
+          controls: 1,
+          showinfo: 0,
+          branding: 0,
+          rel: 0,
+          autohide: 0
+        }
+      });
+      
+      $('#background-video').YTPlayer({
+        fitToBackground: true,
+        videoId: 'o5z8ZqaYRKQ',
+        pauseOnScroll: true,
+        callback: function() {
+          videoCallbackEvents();
+        }
+      });
+      
+      var videoCallbackEvents = function() {
+        var player = $('#background-video').data('ytPlayer').player;
+      
+        player.addEventListener('onStateChange', function(event){
+            console.log("Player State Change", event);
+
+            // OnStateChange Data
+            if (event.data === 0) {          
+                console.log('video ended');
+            }
+            else if (event.data === 2) {          
+              console.log('paused');
+            }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
