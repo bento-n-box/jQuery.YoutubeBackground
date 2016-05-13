@@ -6,8 +6,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
-  <meta name="description" content="">
+  <title>Jquery Youtube Fullscreen Background Video</title>
+  <meta name="keywords" content="background, video, jquery, plugin, javascript, css, 360, youtube">
+  <meta  name="description" content="Create fullscreen youtube background videos with this jquery plugin.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Twitter Boostrap for Demo -->
   <link rel="stylesheet" href="http:////maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -24,6 +25,7 @@
     <h1>Jquery Youtube Background Video</h1>
     <p class="lead">A simple wrapper for the YouTube API to create background videos</p>
     <div id="anotherVideo"></div>
+    <h2><a href="/360.html"> Now with 360 video support!</a></h2>
   </div>
 
   <div class="container options">
@@ -95,6 +97,36 @@
       </div>
     </div>
   </div>
+
+  <div class="container options">
+    <div class="row">
+      <div class="span12">
+        <h1> How to Instantiate</h1>
+
+        <h3>Instantiate plugin</h3>
+<pre>
+$('#video').YTPlayer({
+    fitToBackground: true,
+    videoId: 'LSmgKRx5pBo'
+});
+</pre>
+        <h3> Make sure to add some CSS</h3>
+        <pre>
+#video{
+  position: relative;
+  background: transparent;
+}
+
+.ytplayer-container{
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+        </pre>
+        </div>
+      </div>
+    </div>
+
 
   <div class="container options">
     <div class="row">
