@@ -5,7 +5,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *
  *
- * Version:  1.0.1
+ * Version:  1.0.4
  *
  */
 
@@ -186,7 +186,7 @@ if (typeof Object.create !== "function") {
 
       /*jshint multistr: true */
       var $YTPlayerString = $('<div id="ytplayer-container' + self.ID + '" >\
-                                    <div id="' + self.holderID + '" class="ytplayer-player"></div> \
+                                    <div id="' + self.holderID + '" class="ytplayer-player-inline"></div> \
                                     </div> \
                                     <div id="ytplayer-shield" class="ytplayer-shield"></div>');
 
@@ -241,7 +241,7 @@ if (typeof Object.create !== "function") {
         pHeight = Math.ceil(width / self.options.ratio); // get new player height
         $YTPlayerPlayer.width(width).height(pHeight).css({
           left: 0,
-          top: 0
+          top: (height - pHeight) / 2
         }); // player height is greater, offset top; reset left
       }
 

@@ -1,7 +1,8 @@
-# jQuery.BackgroundVideo V 1.0
+# jQuery.BackgroundVideo V 1.0.4
 Inspired by [Tubular] (http://www.seanmccambridge.com/tubular/)
 
 Example: http://rochestb.github.io/jQuery.YoutubeBackground
+360 Video Example: http://rochestb.github.io/jQuery.YoutubeBackground/360.html
 
 Production Example: [www.cpbgroup.com] (http://cpbgroup.com)
 
