@@ -5,7 +5,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *
  *
- * Version:  1.0.4
+ * Version:  1.0.5
  *
  */
 

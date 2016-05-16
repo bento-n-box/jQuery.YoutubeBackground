@@ -1,4 +1,4 @@
-# jQuery.BackgroundVideo V 1.0.4
+# jQuery.BackgroundVideo V1.0.5
 Inspired by [Tubular] (http://www.seanmccambridge.com/tubular/)
 
 Example: http://rochestb.github.io/jQuery.YoutubeBackground
