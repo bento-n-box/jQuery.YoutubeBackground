@@ -51,7 +51,7 @@ Any youtube option must be placed within the playerVars object.
 ```
 $('#video').YTPlayer({
     fitToBackground: true,
-    videoId: 'LSmgKRx5pBo'
+    videoId: 'LSmgKRx5pBo',
     playerVars: {
       modestbranding: 0,
       autoplay: 1,
