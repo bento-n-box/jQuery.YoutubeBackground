@@ -267,7 +267,6 @@ if (typeof Object.create !== "function") {
       if (this.options.mute) {
         e.target.mute();
       }
-      e.target.playVideo();
     },
 
     /**
