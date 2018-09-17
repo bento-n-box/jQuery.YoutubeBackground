@@ -1,0 +1,27 @@
+{
+  "name": "jquery-youtube-background",
+  "version": "1.0.0",
+  "description": "Creates fullscreen background videos based on the Youtube API",
+  "main": "src/jquery.youtubebackground.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rochestb/jQuery.YoutubeBackground.git"
+  },
+  "keywords": [
+    "jquery",
+    "youtube",
+    "background",
+    "video",
+    "video",
+    "background"
+  ],
+  "author": "rochestb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rochestb/jQuery.YoutubeBackground/issues"
+  },
+  "homepage": "https://github.com/rochestb/jQuery.YoutubeBackground#readme"
+}
