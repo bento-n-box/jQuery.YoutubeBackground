@@ -1,3 +1,7 @@
+*NOTE* I have not been contributing to this, I'm happy to give you permissions to write to the repo if I am slowing you down.
+
+
+
 # jQuery.BackgroundVideo V1.0.5
 Inspired by [Tubular] (http://www.seanmccambridge.com/tubular/)
 
