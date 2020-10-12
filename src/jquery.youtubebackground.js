@@ -218,7 +218,7 @@ if (typeof Object.create !== "function") {
      */
     resize: function resize(self) {
       //var self = this;
-      var container = $(window);
+      var container = self.$node;
 
       if (!self.options.fitToBackground) {
         container = self.$node;
@@ -234,12 +234,14 @@ if (typeof Object.create !== "function") {
       if (width / self.options.ratio < height) {
         pWidth = Math.ceil(height * self.options.ratio); // get new player width
         $YTPlayerPlayer.width(pWidth).height(height).css({
+          position: 'absolute',
           left: (width - pWidth) / 2,
           top: 0
         }); // player width is greater, offset left; reset top
       } else { // new video width < window width (gap to right)
         pHeight = Math.ceil(width / self.options.ratio); // get new player height
         $YTPlayerPlayer.width(width).height(pHeight).css({
+          position: 'absolute',
           left: 0,
           top: (height - pHeight) / 2
         }); // player height is greater, offset top; reset left
